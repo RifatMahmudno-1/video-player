@@ -1,5 +1,5 @@
 # Add
-Clone the respiratory and copy the video-player folder in your project directory.
+Clone the repository and copy the video-player folder in your project directory.
 
 # Usage
 - Link videoPlayer.min.css and videoPlayer.min.js files in the head of you html like->
