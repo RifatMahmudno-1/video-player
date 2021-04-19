@@ -1,3 +1,4 @@
+window.onload = function () {
     document.querySelectorAll('.video-player').forEach(function (el) {
         let xyz = ``
         let PP = '';
@@ -15,10 +16,10 @@
             xyz += `autoloop="${el.loop}"`
         }
         if (!!window.chrome) {
-            PP = `<div class="vid-PiP"><img src="./player/PIP.svg"></div>`
+            PP = `<div class="vid-PiP"><img src="./video-player/PIP.svg"></div>`
             PPS = `pps`
         }
-        el.outerHTML = `<div class="vid-con"><video class="video-player" ${xyz} tabindex="0"></video><div class="vid-el1"><img src="./player/pause.svg"></div><div class="vid-el2 ${PPS}"><div>00:00</div><div class="timeLine"><input type="range" min="0" max='200' value="0"><canvas class="vid-loaded"></canvas></div><div>00:00</div><div class="vol"><img src="./player/vol3.svg" alt="Vol"><input type="range" min="0" max="100" step="10" value="100"></div><div class="vid-FullScR"><img src="./player/fullscreen.svg"></div>${PP}</div></div>`
+        el.outerHTML = `<div class="vid-con"><video class="video-player" ${xyz} tabindex="0"></video><div class="vid-el1"><img src="./video-player/pause.svg"></div><div class="vid-el2 ${PPS}"><div>00:00</div><div class="timeLine"><input type="range" min="0" max='200' value="0"><canvas class="vid-loaded"></canvas></div><div>00:00</div><div class="vol"><img src="./video-player/vol3.svg" alt="Vol"><input type="range" min="0" max="100" step="10" value="100"></div><div class="vid-FullScR"><img src="./video-player/fullscreen.svg"></div>${PP}</div></div>`
     })
     let video = document.querySelectorAll('.vid-con .video-player')
     let vidEl1 = document.querySelectorAll('.vid-con .vid-el1')
@@ -105,11 +106,11 @@
             if (bb.muted) {
                 bb.muted = false
                 el.nextSibling.value = 100;
-                el.src = './player/vol3.svg'
+                el.src = './video-player/vol3.svg'
             } else {
                 bb.muted = true;
                 el.nextSibling.value = 0;
-                el.src = './player/vol0.svg'
+                el.src = './video-player/vol0.svg'
             }
         })
     })
@@ -198,13 +199,13 @@
     //volume icons
     function displayVol(aa, el) {
         if (aa < 0.1) {
-            el.src = './player/vol0.svg'
+            el.src = './video-player/vol0.svg'
         } else if (aa >= 0.1 && aa <= 0.3) {
-            el.src = './player/vol1.svg'
+            el.src = './video-player/vol1.svg'
         } else if (aa >= 0.4 && aa <= 0.6) {
-            el.src = './player/vol2.svg'
+            el.src = './video-player/vol2.svg'
         } else if (aa >= 0.7 && aa <= 1) {
-            el.src = './player/vol3.svg'
+            el.src = './video-player/vol3.svg'
         }
     }
     vidEl2.forEach(function (el) {
@@ -266,3 +267,4 @@
             } else el.parentNode.previousSibling.previousSibling.requestPictureInPicture()
         })
     })
+}
