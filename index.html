@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./video-player/videoPlayer.min.css">
+    <script src="./video-player/videoPlayer.min.js"></script>
+    <title>Play Video</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-size: 20px;
+        font-family: 'Signika';
+        overscroll-behavior: none;
+        overflow: hidden;
+        user-select: none;
+    }
+
+    .vid {
+        height: 70vh;
+        width: 100vw;
+        background: rgb(1, 0, 80);
+    }
+
+    .link {
+        background: linear-gradient(-90deg, rgb(0, 2, 126), rgb(4, 1, 41));
+        display: grid;
+        width: 100vw;
+        height: 30vh;
+        grid-template-columns: 70% 30%;
+        grid-template-areas:
+            'div div'
+        ;
+        align-content: center;
+        padding: 1%;
+    }
+
+    .link>div {
+        grid-area: div;
+        font-size: 120%;
+        text-align: center;
+        padding: 1%;
+        color: aqua;
+    }
+
+    .link>input {
+        margin: 1% 5%;
+        padding: 1%;
+        font-size: 100%;
+        font-family: inherit;
+        outline: thin;
+        background: rgba(255, 255, 255, 0.4);
+        border: none;
+        transition: 0.5s;
+        box-shadow: 0 3px 5px #fff;
+        color: aqua;
+    }
+
+    .link>button:hover,
+    .link>input:hover,
+    .link>input:focus {
+        box-shadow: 0 5px 15px #fff;
+    }
+
+    .link>button {
+        margin: 1%;
+        padding: 1%;
+        font-size: 100%;
+        font-family: inherit;
+        width: 100%;
+        max-width: 150px;
+        justify-self: center;
+        border: none;
+        outline: thin;
+        border-radius: 10px;
+        box-shadow: 0 3px 5px #fff;
+        background: aliceblue;
+        transition: 0.5s;
+    }
+</style>
+
+<body>
+    <div class="vid">
+        <video src class="video-player"></video>
+    </div>
+    <div class="link">
+        <div>Paste link in the below input field and then click Insert Url</div>
+        <input type="url">
+        <button type="button">Insert Url</button>
+    </div>
+</body>
+<script>
+    let inp = document.querySelector('.link input')
+    document.querySelector('.link button').addEventListener('click', () => {
+        main()
+    })
+    inp.addEventListener('keypress', (e) => {
+        if (e.keyCode === 13) {
+            main()
+        }
+    })
+
+    function main() {
+        if (inp.value) {
+            if (inp.value.slice(0, 4) === 'http' && inp.value.includes('://')) {
+                document.querySelector('.vid video').src = inp.value
+                inp.value = ''
+            } else {
+                alert('Please provide a valid url')
+            }
+        } else {
+            alert('Provide video url in the input field.')
+        }
+    }
+</script>
+
+</html>
