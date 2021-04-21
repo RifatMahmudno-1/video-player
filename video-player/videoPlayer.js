@@ -32,6 +32,7 @@
         let vidEl2 = document.querySelectorAll('.vid-con .vid-el2')
         let timeLine = document.querySelectorAll('.vid-con .vid-el2 .timeLine input')
         let volLine = document.querySelectorAll('.vid-con .vid-el2 .vol input')
+        let inpRange = document.querySelectorAll('.vid-con .vid-el2 input[type=range]')
         let volShow = document.querySelectorAll('.vid-con .vid-el2 .vol img')
         let img = document.querySelectorAll('.vid-con img')
         let vidFullScR = document.querySelectorAll('.vid-con .vid-el2 .vid-FullScR')
@@ -100,6 +101,7 @@
                 xx.currentTime = el.value
                 let yy = (el.parentNode.previousSibling);
                 currTime(xx, yy, 'now')
+                InpRange(el)
             })
         })
         //volume line
@@ -109,6 +111,7 @@
                 let bb = el.parentNode.parentNode.parentNode.childNodes[0]
                 bb.volume = aa;
                 displayVol(aa, el.previousSibling)
+                InpRange(el)
             })
         })
         //mute-unmute
@@ -158,6 +161,7 @@
                     final = `${bb[0]}:${cc}`
                 }
                 xx.nextSibling.nextSibling.childNodes[1].childNodes[0].value = Math.round(aa);
+                InpRange(xx.nextSibling.nextSibling.childNodes[1].childNodes[0])
                 zz.textContent = final
             }
             if (yy === 'now') {
@@ -244,7 +248,7 @@
                 var context = canvas.getContext('2d', {
                     antialias: false
                 });
-                context.fillStyle = '#0800ff'
+                context.fillStyle = '#00ddff'
                 var width = canvas.width;
                 var height = canvas.height;
                 context.clearRect(0, 0, width, height);
@@ -305,6 +309,16 @@
                     console.log(`Video loading time exceeded`);
                 }
             }
+        }
+        //input range style
+        inpRange.forEach(function (el) {
+            InpRange(el)
+        })
+
+        function InpRange(ele) {
+            let percentage = ele.value / (ele.max - ele.min) * 100;
+            ele.style.background =
+                `linear-gradient(to right, #3a1582, #7a00ff  ${percentage}%, #afafaf60 ${percentage}%)`
         }
         //fix height and width
         function fixHW(el) {
